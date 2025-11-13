@@ -14,11 +14,26 @@
 
         <SubPath>\Duckov_Data\Managed\</SubPath>
         <SubPath Condition="'$(IsMac)'">/Duckov.app/Contents/Resources/Data/Managed/</SubPath>
+        <Platforms>AnyCPU;x64</Platforms>
 
     </PropertyGroup>
     <ItemGroup>
-        <Reference Include="$(DuckovPath)$(SubPath)TeamSoda.*"/>
-        <Reference Include="$(DuckovPath)$(SubPath)ItemStatsSystem.dll"/>
-        <Reference Include="$(DuckovPath)$(SubPath)Unity*"/>
+        <Reference Include="$(DuckovPath)$(SubPath)TeamSoda.*" />
+        <Reference Include="$(DuckovPath)$(SubPath)ItemStatsSystem.dll" />
+        <Reference Include="0Harmony">
+          <HintPath>..\..\Release\IsekaiItems\0Harmony.dll</HintPath>
+        </Reference>
+        <Reference Include="$(DuckovPath)$(SubPath)Unity*" />
+    </ItemGroup>
+    <ItemGroup>
+      <Compile Remove="docs\**" />
+      <EmbeddedResource Remove="docs\**" />
+      <None Remove="docs\**" />
+    </ItemGroup>
+    <ItemGroup>
+      <None Remove="0Harmony.dll" />
+    </ItemGroup>
+    <ItemGroup>
+      <EmbeddedResource Include="0Harmony.dll" />
     </ItemGroup>
 </Project>

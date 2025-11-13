@@ -4,6 +4,8 @@
 
 在神奇的鸭科夫，涌现出各种各样的异世界物品……
 
+参阅 https://steamcommunity.com/sharedfiles/filedetails/?id=3591453758
+
 ---
 
 ## 来自塔科夫市的物品
