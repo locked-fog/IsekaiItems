@@ -1,23 +1,40 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Reflection;
 
 namespace IsekaiItems
 {
-    public class HarmonyLoad
+    /// <summary>
+    /// 负责从嵌入资源中加载0Harmony.dll。
+    /// </summary>
+    public static class HarmonyLoad
     {
+        /// <summary>
+        /// 从嵌入资源流加载0Harmony.dll程序集。
+        /// 
+        /// 前置要求：在项目属性中设置0Harmony.dll的"生成操作"为"嵌入的资源"。
+        /// </summary>
+        /// <returns>加载的Harmony程序集。</returns>
+        /// <exception cref="InvalidOperationException">当资源流不存在时抛出。</exception>
         public static Assembly Load0Harmony()
         {
-            // 在项目属性中设置 0Harmony.dll 的 "生成操作" 为 "嵌入的资源"
             Assembly executingAssembly = Assembly.GetExecutingAssembly();
-            // 获取当前类的命名空间（假设当前类在 "DeadNoDrop" 命名空间下）
             string currentNamespace = typeof(HarmonyLoad).Namespace;
+            
             using (Stream stream = executingAssembly.GetManifestResourceStream($"{currentNamespace}.0Harmony.dll"))
-            using (MemoryStream ms = new MemoryStream())
             {
-                stream?.CopyTo(ms);
-                Assembly assembly = Assembly.Load(ms.ToArray());
+                if (stream == null)
+                {
+                    throw new InvalidOperationException(
+                        $"Failed to load embedded resource: {currentNamespace}.0Harmony.dll. " +
+                        "Ensure 0Harmony.dll is set as an embedded resource in the project properties.");
+                }
 
-                return assembly;
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    stream.CopyTo(ms);
+                    return Assembly.Load(ms.ToArray());
+                }
             }
         }
     }

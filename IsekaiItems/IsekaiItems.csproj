@@ -23,6 +23,12 @@
         <Reference Include="0Harmony">
           <HintPath>..\..\Release\IsekaiItems\0Harmony.dll</HintPath>
         </Reference>
+        <Reference Include="Newtonsoft.Json">
+          <HintPath>..\..\..\..\..\SteamLibrary\steamapps\common\Escape from Duckov\Duckov_Data\Managed\Newtonsoft.Json.dll</HintPath>
+        </Reference>
+        <Reference Include="SodaLocalization">
+          <HintPath>..\..\..\..\..\SteamLibrary\steamapps\common\Escape from Duckov\Duckov_Data\Managed\SodaLocalization.dll</HintPath>
+        </Reference>
         <Reference Include="$(DuckovPath)$(SubPath)Unity*" />
     </ItemGroup>
     <ItemGroup>
